@@ -23,13 +23,6 @@ app.all('*', function (req, res, next) {
   next();
 });
 
-var blog =new Blog({
-  blogTitle : "我的第三篇ubuntu blog",
-  blogContent : "我的第三篇ubuntu blog 我的第一篇ubuntu blog我的第一篇ubuntu blog",
-  blogTag:"new",
-})
-blog.save();
-
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

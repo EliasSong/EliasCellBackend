@@ -3,7 +3,7 @@ var router = express.Router();
 var Blog = require("../dbs/dbSchema")
 /* GET home page. */
 router.get('/search/blog', function(req, res, next) {
-  Blog.findOne({blogTag:"闲谈"},(err,blog) => {
+  Blog.findOne({blogTag:"new"},(err,blog) => {
     if(err) {
       console.log(err);
     }
