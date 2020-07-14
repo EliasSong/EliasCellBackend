@@ -23,7 +23,6 @@ app.all('*', function (req, res, next) {
   next();
 });
 
-
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.get('*',(req,res) => {
