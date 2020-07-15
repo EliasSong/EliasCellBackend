@@ -25,4 +25,10 @@ router.get('/search/blog/:id',(req,res) => {
   })
 })
 
+router.post('/create/blog',(req, res, next) =>{
+  const data = req.body
+  console.log(data.newBlogTitle);
+  res.send("ok")
+})
+
 module.exports = router;
