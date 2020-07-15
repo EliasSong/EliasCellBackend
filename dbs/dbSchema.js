@@ -4,7 +4,8 @@ var UserSchema = new Schema({
   blogTitle : { type: String },
   blogDesc:{type:String},
   blogCarousel:{type:String},
-  blogContent:{type:String},
+  blogMDContent:{type:String},
+  blogHTMLContent:{type:String},
   blogTime:{type:Date,default:Date.now()},
   blogTag:{type:String},
 });

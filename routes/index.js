@@ -26,9 +26,17 @@ router.get('/search/blog/:id',(req,res) => {
 })
 
 router.post('/create/blog',(req, res, next) =>{
-  const data = req.body
-  console.log(data.newBlogTitle);
-  res.send("ok")
+  const newBlogData = req.body
+  let newBlog = new Blog({
+    blogTitle : newBlogData.newBlogTitle,
+    blogDesc:newBlogData.newBlogDesc,
+    blogCarousel:newBlogData.newBlogURL,
+    blogMDContent:newBlogData.newBlogMDContent,
+    blogHTMLContent:newBlogData.newBlogHTMLContent,
+    blogTag:newBlogData.newBlogTag,
+  })
+  newBlog.save()
+  res.send("后端已收到")
 })
 
 module.exports = router;
