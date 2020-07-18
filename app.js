@@ -4,9 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var Blog = require('./dbs/dbSchema')
-var indexRouter = require('./routes/index');
+var indexRouter = require('./routes/blog');
 var usersRouter = require('./routes/users');
 var bodyParser = require('body-parser');/*post方法*/
+
 
 
 var app = express();

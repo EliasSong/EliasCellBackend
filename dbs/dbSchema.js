@@ -1,3 +1,4 @@
+var moment = require("moment")
 var mongoose = require('./db.js'),
   Schema = mongoose.Schema;
 var UserSchema = new Schema({
@@ -6,7 +7,7 @@ var UserSchema = new Schema({
   blogCarousel:{type:String},
   blogMDContent:{type:String},
   blogHTMLContent:{type:String},
-  blogTime:{type:Date,default:Date.now()},
+  blogTime:{type:String,default:moment().format('YYYY-MM-DD hh:mm:ss')},
   blogTag:{type:String},
 });
 module.exports = mongoose.model('blog',UserSchema,'blogs');

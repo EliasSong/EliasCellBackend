@@ -13,10 +13,21 @@ router.get('/search/blog', function(req, res, next) {
   })
 });
 
-router.get('/search/blog/:id',(req,res) => {
-
+router.get('/search/blog/detail/:id',(req,res) => {
   Blog.findById(req.params.id,(err,blog) => {
     if(err){
+      console.log(err);
+    }
+    else{
+      res.send(blog)
+    }
+  })
+})
+
+router.get('/search/blog/tag/:tag',(req,res) => {
+  Blog.find({blogTag:req.params.tag},(err,blog) => {
+    if(err)
+    {
       console.log(err);
     }
     else{
@@ -38,5 +49,7 @@ router.post('/create/blog',(req, res, next) =>{
   newBlog.save()
   res.send("后端已收到")
 })
+
+
 
 module.exports = router;
