@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Blog = require("../dbs/dbSchema")
+var Blog = require("../dbs/blogSchema")
 /* GET home page. */
 router.get('/search/blog', function(req, res, next) {
   Blog.find({},(err,blog) => {
@@ -51,5 +51,14 @@ router.post('/create/blog',(req, res, next) =>{
 })
 
 
-
+router.delete('/delete/blog/:id',(req, res, next) => {
+  Blog.findByIdAndDelete(req.params.id, err => {
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.send("删除成功")
+    }
+  })
+})
 module.exports = router;
