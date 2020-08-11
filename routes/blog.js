@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var Blog = require("../dbs/blogSchema")
+var moment = require('moment')
+moment.locale('zh-cn');
 /* GET home page. */
 router.get('/search/blog', function(req, res, next) {
   Blog.find({},(err,blog) => {
@@ -45,6 +47,7 @@ router.post('/create/blog',(req, res, next) =>{
     blogMDContent:newBlogData.newBlogMDContent,
     blogHTMLContent:newBlogData.newBlogHTMLContent,
     blogTag:newBlogData.newBlogTag,
+    blogTime:moment().format('YYYY-MM-DD hh:mm:ss')
   })
   newBlog.save()
   res.send("后端已收到")
