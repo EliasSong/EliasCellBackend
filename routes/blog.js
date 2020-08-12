@@ -47,9 +47,11 @@ router.post('/create/blog',(req, res, next) =>{
     blogMDContent:newBlogData.newBlogMDContent,
     blogHTMLContent:newBlogData.newBlogHTMLContent,
     blogTag:newBlogData.newBlogTag,
-    blogTime:moment().format('YYYY-MM-DD hh:mm:ss')
+    blogTime:moment().format('YYYY-MM-DD hh:mm:ss A')
   })
-  newBlog.save()
+  newBlog.save(err=>{
+    console.log(err);
+  })
   res.send("后端已收到")
 })
 

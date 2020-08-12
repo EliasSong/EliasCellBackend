@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var Album = require('../dbs/albumSchema')
 var Image = require("../dbs/imageSchema")
+var moment = require('moment')
+moment.locale('zh-cn');
 /* GET users listing. */
 router.get('/search/album', function(req, res, next) {
   Album.find({},(err,album) => {
@@ -27,7 +29,8 @@ router.get('/search/album/detail/:id',(req,res,next) =>{
 
 router.post('/create/album',(req,res,next) => {
   var album = new Album({
-    albumTitle:req.body.newAlbumTitle
+    albumTitle:req.body.newAlbumTitle,
+    albumTime:moment().format('YYYY-MM-DD hh:mm:ss A')
   })
   album.save();
   res.send("album created")
@@ -42,7 +45,8 @@ router.post('/create/album/image',(req,res,next) => {
     if(data.newImageURLs[i] !== ""){
       var image = new Image({
         imageURL:data.newImageURLs[i],
-        parentId:data.albumId
+        parentId:data.albumId,
+        imageTime:moment().format('YYYY-MM-DD hh:mm:ss A')
       })
       image.save()
       images.push(image);
