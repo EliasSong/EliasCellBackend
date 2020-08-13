@@ -4,8 +4,22 @@ var Blog = require("../dbs/blogSchema")
 var moment = require('moment')
 moment.locale('zh-cn');
 /* GET home page. */
-router.get('/search/blog', function(req, res, next) {
-  Blog.find({},(err,blog) => {
+router.get('/search/blog/homeBlogData', function(req, res, next) {
+  Blog.find({},{ blogTitle: 1, blogDesc: 1,blogTag:1,blogTime:1 }).limit(5)
+    .sort({'_id':-1})
+    .exec((err,blog) => {
+    if(err) {
+      console.log(err);
+    }
+    else{
+
+      res.send(blog)
+    }
+  })
+});
+
+router.get('/search/blog/allBlogDataList', function(req, res, next) {
+  Blog.find({},{ blogTitle: 1, blogDesc: 1,blogTag:1,blogTime:1 },(err,blog) => {
     if(err) {
       console.log(err);
     }
@@ -27,15 +41,17 @@ router.get('/search/blog/detail/:id',(req,res) => {
 })
 
 router.get('/search/blog/tag/:tag',(req,res) => {
-  Blog.find({blogTag:req.params.tag},(err,blog) => {
-    if(err)
-    {
-      console.log(err);
-    }
-    else{
-      res.send(blog)
-    }
-  })
+  Blog.find({blogTag:req.params.tag},{ blogTitle: 1, blogDesc: 1,blogTag:1,blogTime:1 }).limit(3)
+    .sort({"_id":-1})
+    .exec((err,blog) => {
+      if(err)
+      {
+        console.log(err);
+      }
+      else{
+        res.send(blog)
+      }
+    })
 })
 
 router.post('/create/blog',(req, res, next) =>{
