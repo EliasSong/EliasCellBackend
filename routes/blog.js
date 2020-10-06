@@ -82,4 +82,17 @@ router.delete('/delete/blog/:id',(req, res, next) => {
     }
   })
 })
+
+router.put('/modify/blog/:id',(req,res,next) => {
+  modifyBlogData=req.body;
+  Blog.findByIdAndUpdate(req.params.id,modifyBlogData,err => {
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.send("修改成功")
+    }
+  })
+})
+
 module.exports = router;

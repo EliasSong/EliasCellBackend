@@ -12,8 +12,9 @@ var bodyParser = require('body-parser');/*post方法*/
 
 
 var app = express();
+
 app.use(bodyParser.json());// 添加json解析
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ limit:'100mb', extended: true }));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
