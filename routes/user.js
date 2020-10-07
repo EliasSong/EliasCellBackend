@@ -10,11 +10,13 @@ router.post('/login', function(req, res, next) {
       console.log(err);
     }
     else{
-      if(user[0].password == userpwd){
-        res.send(user[0]._id)
+      console.log(user);
+
+      if(user.length!=0&&user[0].password == userpwd){
+        res.send(true)
       }
       else{
-        res.send("验证失败")
+        res.send(false)
       }
     }
   })
